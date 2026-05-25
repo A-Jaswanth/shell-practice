@@ -14,8 +14,8 @@ validate(){
 }
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 validate $? "repo status is"
-
-dnf install mongodb-org -y 
+logfile=/tmp/roboshop
+dnf install mongodb-org -y | tee -a $logfile
 validate $? "mongodb install status is"
 
 systemctl enable mongod 
